@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>江职大校园网自动登录</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="status-dot" id="statusDot"></div>
+  <h1 class="title">江职大校园网自动登录</h1>
+</div>
+
+<div class="status-card" id="statusCard">
+  <div class="status-row">
+    <span class="status-label">当前状态</span>
+    <span class="status-value" id="statusText">--</span>
+  </div>
+  <div class="status-row">
+    <span class="status-label">上次检测</span>
+    <span class="status-value" id="lastCheck">--</span>
+  </div>
+  <div class="status-row" id="nextCheckRow">
+    <span class="status-label">下次检测</span>
+    <span class="status-value" id="nextCheck">--</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="form-group">
+    <label class="form-label" for="username">账号</label>
+    <input type="text" id="username" class="form-input" placeholder="输入校园网账号" autocomplete="off">
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="password">密码</label>
+    <div class="password-wrap">
+      <input type="password" id="password" class="form-input" placeholder="输入校园网密码" autocomplete="off">
+      <button type="button" class="toggle-pw" id="togglePw" title="显示密码">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-open">
+          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-closed" style="display:none">
+          <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/>
+          <line x1="1" y1="1" x2="23" y2="23"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">运营商</label>
+    <div class="radio-group">
+      <label class="radio-item">
+        <input type="radio" name="isp" value="@cmcc" checked>
+        <span class="radio-label">中国移动</span>
+      </label>
+      <label class="radio-item">
+        <input type="radio" name="isp" value="@unicom">
+        <span class="radio-label">中国联通</span>
+      </label>
+      <label class="radio-item">
+        <input type="radio" name="isp" value="@telecom">
+        <span class="radio-label">中国电信</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-row form-row-3">
+    <div class="form-group form-group-third">
+      <label class="form-label" for="interval">检测间隔</label>
+      <select id="interval" class="form-select">
+        <option value="5">5 秒</option>
+        <option value="10">10 秒</option>
+        <option value="15">15 秒</option>
+        <option value="30" selected>30 秒</option>
+        <option value="60">60 秒</option>
+      </select>
+    </div>
+    <div class="form-group form-group-third">
+      <label class="form-label" for="notificationType">暂停通知</label>
+      <select id="notificationType" class="form-select">
+        <option value="none" selected>不通知</option>
+        <option value="system">系统通知</option>
+      </select>
+    </div>
+    <div class="form-group form-group-third">
+      <label class="form-label">选项</label>
+      <label class="checkbox-wrap" title="开启后在浏览器控制台输出日志，用于排查问题">
+        <input type="checkbox" id="debugMode">
+        <span class="checkbox-label">调试模式</span>
+      </label>
+      <label class="checkbox-wrap checkbox-fast" title="实验性功能。忽略检测间隔，每1秒检测校园网关，断线即刻重连">
+        <input type="checkbox" id="fastReconnect">
+        <span class="checkbox-label checkbox-label-fast">快速重连</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="actions">
+  <div class="actions-row">
+    <button type="button" class="btn btn-secondary" id="btnCheck">立即检测</button>
+    <button type="button" class="btn btn-outline" id="btnPause">暂停插件</button>
+  </div>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
